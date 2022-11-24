@@ -1,0 +1,37 @@
+﻿@inherits LayoutComponentBase
+
+<MudThemeProvider />
+<MudDialogProvider />
+<MudSnackbarProvider />
+
+<MudLayout>
+
+    <MudAppBar Elevation="1">
+        @if (_userIsAuthenticated)
+        {
+            <MudIconButton Icon="@Icons.Material.Filled.Menu" OnClick="DrawerToggle" Style="color: #fff" Edge="Edge.Start" />
+        }
+
+        <MudText Typo="Typo.h5" Class="ml-3">Itransition Task6 Воробьёв Эмиль</MudText>
+
+        <MudSpacer />
+        <CascadingValue Value="this">
+            <LoginPartial />
+        </CascadingValue>
+
+    </MudAppBar>
+
+    @if (_userIsAuthenticated)
+    {
+        <MudDrawer @bind-Open="@_drawerOpen" Elevation="1">
+            <NavMenu />
+        </MudDrawer>
+    }
+
+
+    <MudMainContent>
+        <CascadingValue Value="this">
+            @Body
+        </CascadingValue>
+    </MudMainContent>
+</MudLayout>
