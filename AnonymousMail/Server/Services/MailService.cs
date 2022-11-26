@@ -23,14 +23,14 @@ namespace AnonymousMail.Server.Services
             if (username == null || username == string.Empty)
                 return new List<User>();
 
-            var users = (await GetUsersAsync())
+            var users = (await _context.Users.ToListAsync())
                         .Where(user => user.Username.Contains(username, StringComparison.CurrentCultureIgnoreCase));
             return users;
         }
 
         public async Task<List<User>> GetUsersAsync()
         {
-            var allUsers = await _context.Users.Where(user => user.Id != UserId).ToListAsync();
+            var allUsers = await _context.Users.ToListAsync();
             return allUsers!;
         }
 
