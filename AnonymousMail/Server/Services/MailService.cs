@@ -42,7 +42,7 @@ namespace AnonymousMail.Server.Services
         public async Task<MailMessage> SaveMessageAsync(MailMessage message)
         {
             message.FromUserId = UserId;
-            message.CreatedDate = DateTime.Now;
+            message.CreatedDate = DateTime.UtcNow;
             message.ToUser = await _context.Users.Where(user => user.Id == message.ToUserId).FirstAsync();
             _context.MailMessages.Add(message);
             await _context.SaveChangesAsync();

@@ -10,7 +10,7 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 
 builder.Services.AddDbContext<AppDbContext>(opt =>
-    opt.UseSqlite("Data Source=app.db"));
+    opt.UseNpgsql("Host=ec2-44-205-41-76.compute-1.amazonaws.com;Port=5432;Database=d2vqghquqteg21;Username=gmuvxsxyylhcum;Password=6a17d33ec8f04553fc002c815ad26acb6774f55b6289376b4a5d3373040e3502"));
 
 builder.Services.AddControllersWithViews();
 builder.Services.AddRazorPages();
