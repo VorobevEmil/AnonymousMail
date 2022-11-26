@@ -15,7 +15,7 @@
                     <TitleContent>
                         <div class="d-flex justify-content-between">
                             <div class="d-flex">
-                                <MudText Style="font-weight: 500;"></MudText>
+                                <MudText Style="font-weight: 500;">@(IsInputMessages ? $"От: {mailMessage.FromUser}" : $"Кому: {mailMessage.ToUser}")</MudText>
                                 <MudText Class="mx-4">@mailMessage.Topic</MudText>
                             </div>
                             <div>
