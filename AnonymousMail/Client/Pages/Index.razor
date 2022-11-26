@@ -19,7 +19,7 @@
                     <div class="my-3 d-flex align-items-center">
                         <MudTextField @bind-Value="_username" Margin="Margin.Dense" Variant="Variant.Outlined" Label="Имя пользователя" />
                         <span class="mx-1"></span>
-                        <MudButton Variant="Variant.Filled" Color="Color.Primary" OnClick="(async () => await LoginAsync())">Войти</MudButton>
+                        <MudButton Variant="Variant.Filled" Color="Color.Primary" OnClick="LoginAsync">Войти</MudButton>
                     </div>
                 </div>
             </MudPaper>

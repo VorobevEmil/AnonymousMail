@@ -1,5 +1,5 @@
-﻿using AnonymousMail.Shared.Command.Response.Mail;
-using AnonymousMail.Shared.Command.Response.Request;
+﻿using AnonymousMail.Shared.Command.Request;
+using AnonymousMail.Shared.Command.Response.Mail;
 using AutoMapper;
 
 namespace AnonymousMail.Server.Common.Mapper.MailMessage

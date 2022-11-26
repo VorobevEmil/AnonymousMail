@@ -1,6 +1,4 @@
-﻿using AnonymousMail.Shared.Models;
-
-namespace AnonymousMail.Shared.Command.Response.Request
+﻿namespace AnonymousMail.Shared.Command.Request
 {
     public class MailMessageRequest
     {

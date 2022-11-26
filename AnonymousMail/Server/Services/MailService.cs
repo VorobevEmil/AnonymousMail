@@ -39,13 +39,18 @@ namespace AnonymousMail.Server.Services
             return await _context.Users.Where(user => user.Id == userId).FirstOrDefaultAsync();
         }
 
-        public async Task SaveMessageAsync(MailMessage message)
+        public async Task<MailMessage> SaveMessageAsync(MailMessage message)
         {
             message.FromUserId = UserId;
             message.CreatedDate = DateTime.Now;
             message.ToUser = await _context.Users.Where(user => user.Id == message.ToUserId).FirstAsync();
             _context.MailMessages.Add(message);
             await _context.SaveChangesAsync();
+
+            return await _context.MailMessages
+                .Include(t => t.ToUser)
+                .Include(t => t.FromUser)
+                .FirstAsync(t => t.Id == message.Id);
         }
 
         public async Task<List<MailMessage>> GetAllInputMessagesAsync()

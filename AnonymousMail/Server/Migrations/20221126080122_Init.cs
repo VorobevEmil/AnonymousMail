@@ -32,7 +32,7 @@ namespace AnonymousMail.Server.Migrations
                     FromUserId = table.Column<string>(type: "TEXT", nullable: false),
                     ToUserId = table.Column<string>(type: "TEXT", nullable: false),
                     Topic = table.Column<string>(type: "TEXT", nullable: false),
-                    Body = table.Column<string>(type: "TEXT", nullable: false),
+                    Body = table.Column<string>(type: "TEXT", nullable: true),
                     CreatedDate = table.Column<DateTime>(type: "TEXT", nullable: false)
                 },
                 constraints: table =>

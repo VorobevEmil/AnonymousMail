@@ -1,0 +1,65 @@
+﻿@using AnonymousMail.Shared.Command.Response.Mail
+<style>
+    img {
+        width: 100%;
+    }
+</style>
+
+<div class="container mt-12">
+    @if (MailMessages != null && MailMessages.Count > 0)
+    {
+        <MudExpansionPanels>
+            @foreach (var mailMessage in MailMessages.OrderByDescending(t => t.CreatedDate))
+            {
+                <MudExpansionPanel HideIcon="true">
+                    <TitleContent>
+                        <div class="d-flex justify-content-between">
+                            <div class="d-flex">
+                                <MudText Style="font-weight: 500;"></MudText>
+                                <MudText Class="mx-4">@mailMessage.Topic</MudText>
+                            </div>
+                            <div>
+                                <MudText Class="text-end">@GenerateDate(mailMessage.CreatedDate)</MudText>
+                            </div>
+                        </div>
+                    </TitleContent>
+                    <ChildContent>
+                        <div class="mt-3 mx-5">
+                            <MudText>@((MarkupString)Markdig.Markdown.ToHtml(mailMessage.Body))</MudText>
+                            </div>
+                        </ChildContent>
+                    </MudExpansionPanel>
+            }
+        </MudExpansionPanels>
+    }
+    else if (MailMessages != null && MailMessages.Count == default)
+    {
+        <div class="d-flex justify-content-center">
+            <MudPaper Class="mt-3 mx-5 px-4 py-5" Elevation="1" Width="500px" Style="text-align: center;">
+                <MudText>@(IsInputMessages ? "Вы ещё не получали сообщения" : "Вы ещё не отправляли сообщения")</MudText>
+            </MudPaper>
+        </div>
+    }
+    else
+    {
+        <div style="padding:50px; text-align:center;">
+            <MudText Typo="Typo.h4">Идёт загрузка сообщений</MudText>
+            <MudProgressLinear Color="Color.Primary" Indeterminate="true" Class="my-7" />
+        </div>
+    }
+</div>
+
+@code {
+
+    [Parameter] public List<MailMessageResponse> MailMessages { get; set; } = default!;
+    [Parameter] public bool IsInputMessages { get; set; } = default!;
+
+
+    private string GenerateDate(DateTime date)
+    {
+        return date.Date == DateTime.Today
+            ? "Сегодня " + date.ToString("t")
+            : date.ToString("g");
+    }
+
+}

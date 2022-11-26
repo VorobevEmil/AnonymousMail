@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace AnonymousMail.Server.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20221122141505_Init")]
+    [Migration("20221126080122_Init")]
     partial class Init
     {
         /// <inheritdoc />
@@ -27,7 +27,6 @@ namespace AnonymousMail.Server.Migrations
                         .HasColumnType("INTEGER");
 
                     b.Property<string>("Body")
-                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<DateTime>("CreatedDate")

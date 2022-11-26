@@ -1,6 +1,6 @@
 ﻿using AnonymousMail.Server.Services;
+using AnonymousMail.Shared.Command.Request;
 using AnonymousMail.Shared.Command.Response.Mail;
-using AnonymousMail.Shared.Command.Response.Request;
 using AnonymousMail.Shared.Models;
 using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
@@ -65,12 +65,12 @@ namespace AnonymousMail.Server.Controllers
         }
 
         [HttpPost("Save")]
-        public async Task<IActionResult> SaveMessageAsync(MailMessageRequest message)
+        public async Task<ActionResult<MailMessageResponse>> SaveMessageAsync(MailMessageRequest message)
         {
             try
             {
-                await _service.SaveMessageAsync(_mapper.Map<MailMessage>(message));
-                return Ok("Сообщение сохранено");
+                var messageResult = await _service.SaveMessageAsync(_mapper.Map<MailMessage>(message));
+                return Ok(_mapper.Map<MailMessageResponse>(messageResult));
             }
             catch
             {

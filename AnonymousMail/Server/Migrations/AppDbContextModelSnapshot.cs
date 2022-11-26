@@ -24,7 +24,6 @@ namespace AnonymousMail.Server.Migrations
                         .HasColumnType("INTEGER");
 
                     b.Property<string>("Body")
-                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<DateTime>("CreatedDate")
